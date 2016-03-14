@@ -5,20 +5,22 @@ $(document).on("pagecreate", "#home", function () {
         //event voor wanneer je op een pokemon item clickt
     });
 
-    refreshAllPokemonList();
+    refreshAllPokemonList(function(){
+      $('ul#all-pokemon').listview('refresh');
+    });
 });
 
-function refreshAllPokemonList() {
-    alert("lijst wordt aangemaakt");
+function refreshAllPokemonList(callback) {
     $.getJSON(POKEDEX_REST_PREFIX_URL + "pokemon", function (data) {
         var items = [];
-        
-        $.each(data.results, function (item) {
-            items.push("<li id='" + data.results[item].name + " class='ui-btn'><a href='#'>" + data.results[item].name + "</a></li>");
-        })
-        
-        console.log(items);
-        $('ul#all-pokemon').append(items.join(""));
+
+        for(var x = 0; x < data.results.length; x++){
+          items.push("<li id='" + data.results[x].name + " class='ui-btn'><a href='#'>" + data.results[x].name + "</a></li>");
+        }
+
+        //console.log(items);
+        $('ul#all-pokemon').html(items.join(""));
+        callback();
     });
 }
 
