@@ -19,7 +19,7 @@ function refreshAllPokemonList(callback) {
         for (var x = 0; x < data.results.length; x++) {
             pokemons.push(data.results[x]);
             var pokemon = pokemons[x];
-            html += "<li id='" + pokemon.name + "' class='ui-btn'><a href='views/pokemon-detail.html' data-transition='slide'><span class='pkspr pkmn-" + pokemon.name + "'></span>" + pokemon.name + "</a></li>";
+            html += "<li id='" + pokemon.name + "' class='ui-btn'><a href='views/pokemon-detail.html'><span class='pkspr pkmn-" + pokemon.name + "'></span>" + pokemon.name + "</a></li>";
         }
 
         html += "<script>PkSpr.process_dom();</script>";
