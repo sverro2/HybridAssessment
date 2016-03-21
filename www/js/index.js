@@ -1,26 +1,48 @@
 var POKEDEX_REST_PREFIX_URL = "http://pokeapi.co/api/v2/";
+var pokemons = [];
 
 $(document).on("pagecreate", "#home", function () {
-    $('#mainview').on('tap', '.pokemon-list', function () {
-        //event voor wanneer je op een pokemon item clickt
-    });
-
-    refreshAllPokemonList(function(){
-      $('ul#all-pokemon').listview('refresh');
+    refreshAllPokemonList(function () {
+        $('ul#all-pokemon').listview('refresh');
+        $('ul#all-pokemon').on("tap", "li", function () {
+            getPokemonDetail($(this).text());
+        });
     });
 });
 
-function refreshAllPokemonList(callback) {
-    $.getJSON(POKEDEX_REST_PREFIX_URL + "pokemon", function (data) {
-        var items = [];
 
-        for(var x = 0; x < data.results.length; x++){
-          items.push("<li id='" + data.results[x].name + " class='ui-btn'><a href='#'>" + data.results[x].name + "</a></li>");
+/* Haalt pokemon op aan de hand van de api */
+function refreshAllPokemonList(callback) {
+    $.getJSON(POKEDEX_REST_PREFIX_URL + "pokemon?limit=20", function (data) {
+        var html = "";
+
+        for (var x = 0; x < data.results.length; x++) {
+            pokemons.push(data.results[x]);
+            var pokemon = pokemons[x];
+            html += "<li id='" + pokemon.name + "' class='ui-btn'><a href='views/pokemon-detail.html' data-transition='slide'><span class='pkspr pkmn-" + pokemon.name + "'></span>" + pokemon.name + "</a></li>";
         }
 
-        //console.log(items);
-        $('ul#all-pokemon').html(items.join(""));
+        html += "<script>PkSpr.process_dom();</script>";
+
+        $('ul#all-pokemon').html(html);
+
         callback();
+    });
+}
+
+function getPokemonDetail(pokemon) {
+    $.getJSON(POKEDEX_REST_PREFIX_URL + "pokemon/" + pokemon, function (data) {
+        var html = "";
+        var pokemon = data;
+
+        html += ("<span class='pkspr pkmn-" + pokemon.name + "'></span>");
+        html += ("<p><b>Base Experience: </b>" + pokemon.base_experience + "</p>");
+        html += ("<p><b>Height: </b>" + pokemon.height + "</p>");
+        html += ("<p><b>Weight: </b>" + pokemon.weight + "</p>");
+        html += ("<script>PkSpr.process_dom();</script>");
+
+        $("h1#title").text(pokemon.name);
+        $('div#pokemon-data').html(html);
     });
 }
 
