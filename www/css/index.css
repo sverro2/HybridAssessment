@@ -15,7 +15,7 @@
         postion:relative;
     }
     
-    #pokemon-detail #settings{
+    #btn-back{
         display: none;
     }
 }
