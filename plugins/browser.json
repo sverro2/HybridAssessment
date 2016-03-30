@@ -10,9 +10,19 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
         "cordova-plugin-websql": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        }
+    }
 }
