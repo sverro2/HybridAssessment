@@ -7,11 +7,11 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
         "cordova-plugin-websql": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "{ff737c80-f0df-11e5-9df6-47ad07f33aad}"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "{ff737c80-f0df-11e5-9df6-47ad07f33aad}"
         }
     },
     "dependent_plugins": {}
