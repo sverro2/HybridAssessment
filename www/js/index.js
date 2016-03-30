@@ -9,13 +9,23 @@ $(document).on("pagecreate", "#home", function () {
             getPokemonDetail($(this).text());
         });
     });
+
+    $('#refresh').on('tap', function () {
+        refreshMyPokemonList(function () {
+            $('ul#my-pokemon').listview('refresh');
+            $('ul#my-pokemon').on("tap", "li", function () {
+                getPokemonDetail($(this).text());
+            });
+        });
+    })
 });
 
 function initializeDatabase() {
     db = window.openDatabase('pokedex', '1.0', 'MBD1_Assessment_Pokedex', 2 * 1024 * 1024);
 
     db.transaction(function (trans) {
-        trans.executeSql('CREATE TABLE IF NOT EXISTS Pokemon (name unique, caught, base_exp, height, weight)');
+        trans.executeSql('CREATE TABLE IF NOT EXISTS AllPokemon (name unique)');
+        trans.executeSql('CREATE TABLE IF NOT EXISTS MyPokemon (name)');
     });
 
     fillDatabaseWithPokemon();
@@ -32,32 +42,25 @@ function fillDatabaseWithPokemon() {
 
 function insertPokemon(pokemon) {
     db.transaction(function (trans) {
-        trans.executeSql('INSERT INTO Pokemon (name, caught) VALUES (?,?)', [pokemon.name, false]);
+        trans.executeSql('INSERT INTO AllPokemon (name) VALUES (?)', [pokemon.name]);
     });
 }
 
-// Werkt nog nie lekker
-function updatePokemon(pokemon, caught) {
+function catchPokemon(pokemon) {
     db.transaction(function (trans) {
-        trans.executeSql('UPDATE Pokemon SET caught=?, base_exp=?, height=?, weight=? WHERE name=?;',
-            [caught, pokemon.base_experience, pokemon.height, pokemon.weight]);
+        trans.executeSql('INSERT INTO MyPokemon (name) VALUES (?)', [pokemon]);
     });
 }
 
 /* Haalt pokemon op aan de hand van de api */
 function refreshAllPokemonList(callback) {
     db.transaction(function (trans) {
-        trans.executeSql('SELECT * FROM Pokemon', [], function (trans, results) {
+        trans.executeSql('SELECT * FROM AllPokemon', [], function (trans, results) {
             var html = "";
             var len = results.rows.length;
             for (var x = 0; x < len; x++) {
                 var pokemon = results.rows.item(x);
-                var caught = (window.localStorage.getItem(pokemon.name) == true) ? window.localStorage.getItem(pokemon.name) : false;
-                if (caught == true) {
-                    html += "<li id='" + pokemon.name + "' class='ui-btn'><a href='views/pokemon-detail.html'><span class='pkspr pkmn-" + pokemon.name + "'></span>" + pokemon.name + "<span class='pkspr pokeball-poke'></span></a></li>";
-                } else {
-                    html += "<li id='" + pokemon.name + "' class='ui-btn'><a href='views/pokemon-detail.html'><span class='pkspr pkmn-" + pokemon.name + "'></span>" + pokemon.name + "</a></li>";
-                }
+                html += "<li id='" + pokemon.name + "' class='ui-btn'><a href='views/pokemon-detail.html'><span class='pkspr pkmn-" + pokemon.name + "'></span>" + pokemon.name + "</a></li>";
             }
 
             html += "<script>PkSpr.process_dom();</script>";
@@ -69,17 +72,36 @@ function refreshAllPokemonList(callback) {
     });
 }
 
+function refreshMyPokemonList(callback) {
+    db.transaction(function (trans) {
+        trans.executeSql('SELECT DISTINCT * FROM MyPokemon', [], function (trans, results) {
+            var html = "";
+            var len = results.rows.length;
+            for (var x = 0; x < len; x++) {
+                var pokemon = results.rows.item(x);
+                html += "<li id='" + pokemon.name + "' class='ui-btn'><a href='views/pokemon-detail.html'><span class='pkspr pkmn-" + pokemon.name + "'></span>" + pokemon.name + "</a></li>";
+            }
+
+            html += "<script>PkSpr.process_dom();</script>";
+
+            $('ul#my-pokemon').html(html);
+
+            callback();
+        });
+    });
+}
+
 function fillPokemonDetail(pokemonName) {
     var pokemon;
     db.transaction(function (trans) {
-        trans.executeSql('SELECT * FROM Pokemon WHERE name=?', [pokemonName], function (trans, result) {
+        trans.executeSql('SELECT * FROM AllPokemon WHERE name=?', [pokemonName], function (trans, result) {
             pokemon = result.rows.item;
         });
     });
 
     if (pokemon.base_exp === null && pokemon.height === null && pokemon.weight === null) {
         $.getJSON(POKEDEX_REST_PREFIX_URL + "pokemon/" + pokemon, function (data) {
-            updatePokemon(pokemon, false);
+            catchPokemon(pokemon, false);
         });
     }
 }
@@ -89,14 +111,14 @@ function getPokemonDetail2(pokemonName) {
     var html = "";
 
     db.transaction(function (trans) {
-        trans.executeSql('SELECT * FROM Pokemon WHERE name=?', [pokemonName], function (trans, results) {
+        trans.executeSql('SELECT * FROM AllPokemon WHERE name=?', [pokemonName], function (trans, results) {
             var len = results.rows.length;
             for (var x = 0; x < len; x++) {
                 var pokemon = results.rows.item(x);
 
                 if (pokemon.base_exp === null && pokemon.height === null && pokemon.weight === null) {
                     $.getJSON(POKEDEX_REST_PREFIX_URL + "pokemon/" + pokemonName, function (data) {
-                        updatePokemon(data, false);
+                        catchPokemon(data, false);
                     });
                 }
 
@@ -111,7 +133,6 @@ function getPokemonDetail2(pokemonName) {
             }
         });
     });
-
 }
 
 function getPokemonDetail(pokemon) {
@@ -148,7 +169,6 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
