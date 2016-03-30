@@ -151,13 +151,14 @@ function getPokemonDetail(pokemon) {
     });
 }
 
-var pokemonFinder{
+var pokemonFinder = {
   currentLocation:{
     lat: "",
     long: ""
   },
   isCLoseBy: false,
   inRadiusOfPokemon: function(){
+    alert("notified");
     cordova.plugins.notification.local.schedule({
         id: 1,
         title: "Catch!",
@@ -192,11 +193,11 @@ var pokemonFinder{
       { enableHighAccuracy: true }
     );
   },
-  catchpokemon = function(){
+  catchPokemon: function(){
     //TODO: remove location from database
     //TODO: remove pokemon from pokemontofind list and update the pokemon as "found"
   },
-  getNearestLocationDistance = function(){
+  getNearestLocationDistance: function(){
     //TODO: loop through all locations and return location with nearest distance.
     ///     (nothing will happen when refreshLocations isn't called before this)
     console.log(
@@ -206,12 +207,12 @@ var pokemonFinder{
     //distance to nearest location
     return nearestLocationDistance;
   },
-  refreshLocations(){
+  refreshLocations: function(){
     //TODO: read location from database and add them to the list
   },
-  refreshPokemonToFind(){
+  refreshPokemonToFind: function(){
     //TODO: read pokemons that are not yet found from database
-  }
+  },
   calculateDistance: function(lat1, lon1, lat2, lon2){
     var earthRadius = 6371000; //meters
     var dLat = Math.PI * (lat2-lat1)/180;
@@ -246,5 +247,6 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
       pokemonFinder.checkIsInRadius();
+      pokemonFinder.inRadiusOfPokemon();
     }
 };
