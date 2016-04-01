@@ -42,11 +42,10 @@ $(document).on("pagecreate", "#home", function () {
         alert("No lations available");
       }
     });
-    $('#settings-button').on('tap', function(){
+    $(document).on('pageinit', '#pokemon-settings', function () {
       getSetting("pokemon-cache-count", function(value){
-        setTimeout(function(){ $('body').find("#amount-of-pokemon-to-cache").val(value); }, 500);
+        $('body').find("#amount-of-pokemon-to-cache").val(value);
       });
-
     });
     $('body').on('tap', '.compass-close', function () {
       navigator.compass.clearWatch(compass);
