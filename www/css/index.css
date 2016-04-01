@@ -1,20 +1,24 @@
 @media all and (min-width: 450px) {
     #home{
-        display:block;
-        float: left;
-        width:30%;
-        postion:relative;
-        z-index:200;
+      display:block;
+      float: left;
+      width:45%;
+      postion:relative;
+      z-index:200;
     }
 
-    #pokemon-detail{
-        display:inline-block;
-        float:right;
-        width:70%;
-        margin-left: 30%;
-        postion:relative;
+    #pokemon-detail, #pokemon-catch, #pokemon-settings{
+      display:inline-block;
+      float:right;
+      width:65%;
+      margin-left: 45%;
+      postion:relative;
     }
-    
+
+    .detail-content{
+      margin-right: 15%;
+    }
+
     #btn-back{
         display: none;
     }

@@ -22,18 +22,20 @@
     <div data-role="page" id="home">
         <div data-role="header">
             <h1>Pokedex 2.0.1</h1>
-            <!--<a href="#settings_dialog" id="settings" data-transition="pop" class="ui-btn ui-btn-right ui-icon-gear ui-btn-icon-notext ui-btn-right">Settings</a>-->
+            <a href="views/navigator.html" id="navigate-button" class="ui-btn ui-btn-left ui-icon-search ui-btn-icon-notext ui-btn-right">Navigate</a>
+            <a href="views/settings.html" id="settings-button" class="ui-btn ui-btn-right ui-icon-gear ui-btn-icon-notext ui-btn-right">Settings</a>
         </div>
         <div data-role="main" class="ui-content" id="mainview">
             <div data-role="tabs">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#all-pokemon-tab" class="ui-btn-active">All Pokemon</a></li>
-                        <li><a href="#my-pokemon-tab">My Pokemon</a></li>
+                        <li><a href="#all-pokemon-tab" id="all-pokemon-tab-header" class="ui-btn-active">All Pokemon</a></li>
+                        <li><a href="#my-pokemon-tab" id="my-pokemon-tab-header">My Pokemon</a></li>
                     </ul>
                 </div>
 
                 <div id="all-pokemon-tab">
+                  <button id="force-refresh" class="ui-btn">refresh</button>
                     <ul data-role="listview" data-inset="true" id="all-pokemon" class="pokemon-list" data-filter="true"></ul>
                 </div>
                 <div id="my-pokemon-tab">

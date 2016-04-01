@@ -1,0 +1,32 @@
+<div data-role="page" id="pokemon-detail">
+    <div data-role="header">
+        <a href="#" id="btn-back" class="ui-btn compass-close" data-direction="reverse" data-rel="back">back</a>
+        <h1 id="title">Navigate</h1>
+    </div>
+    <div data-role="main" class="ui-content detail-content">
+      <h2>Navigate to your closest pokemon-resource: <span id="pokemon-resource-name"></span></h2>
+      <div>
+        Bearing:
+        <span id="nav-location-bearing"></span>
+      </div>
+      <div>
+        Name:
+        <span id="nav-location-name"></span>
+      </div>
+      <div>
+        Compass:
+        <span id="nav-compass"></span>
+      </div>
+      <div>
+        Distance:
+        <span id="nav-location-distance"></span>
+      </div>
+      <div onload="compassInit();">
+        <p>
+          Please hold your device in portrait mode while navigating...
+        </p>
+        <canvas id="compass" width="200" height="200"></canvas>
+      </div>
+
+    </div>
+</div>
