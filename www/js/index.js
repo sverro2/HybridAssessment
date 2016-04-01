@@ -15,6 +15,7 @@ var currentLocation = {
   lat: "",
   long: ""
 };
+var amountOfPokemonToCache;
 
 //jquery magic
 $(document).on("pagecreate", "#home", function () {
@@ -43,9 +44,7 @@ $(document).on("pagecreate", "#home", function () {
       }
     });
     $(document).on('pageinit', '#pokemon-settings', function () {
-      getSetting("pokemon-cache-count", function(value){
-        $('body').find("#amount-of-pokemon-to-cache").val(value);
-      });
+        $('body').find("#amount-of-pokemon-to-cache").val(amountOfPokemonToCache);
     });
     $('body').on('tap', '.compass-close', function () {
       navigator.compass.clearWatch(compass);
@@ -53,7 +52,8 @@ $(document).on("pagecreate", "#home", function () {
     $('body').on('tap', '#save-settings-button', function () {
       var setting = $('body').find("#amount-of-pokemon-to-cache").val();
       setSetting("pokemon-cache-count", setting);
-      alert(setting);
+      amountOfPokemonToCache = setting;
+      $("#btn-back").trigger("click");
     });
     $("#mainview").on('swipeleft', function(){
       $("#my-pokemon-tab-header").trigger("click");
@@ -119,7 +119,10 @@ function initializeDatabase(callback) {
       console.log("An error occured whil enhancing the database");
       console.log(err);
     }, function(){
-      fillDatabaseWithPokemon(callback);
+      getSetting("pokemon-cache-count", function(value){
+        amountOfPokemonToCache = value;
+        fillDatabaseWithPokemon(callback);
+      });
     });
 
 }
@@ -132,7 +135,7 @@ function fillDatabaseWithPokemon(callback) {
 
             //als de database all gevuld is doe dan niet meer de request
             if(len == 0){
-              $.getJSON(POKEDEX_REST_PREFIX_URL + "pokemon?limit=151", function (data) {
+              $.getJSON(POKEDEX_REST_PREFIX_URL + "pokemon?limit=" + amountOfPokemonToCache, function (data) {
                   for (var x = 0; x < data.results.length; x++) {
                       var pokemon = data.results[x];
                       insertPokemon(pokemon);
