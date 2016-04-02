@@ -1,14 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/cordova-plugin-device/www/device.js",
-        "id": "cordova-plugin-device.device",
-        "pluginId": "cordova-plugin-device",
-        "clobbers": [
-            "device"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-device-orientation/www/CompassError.js",
         "id": "cordova-plugin-device-orientation.CompassError",
         "pluginId": "cordova-plugin-device-orientation",
@@ -57,7 +49,6 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "cordova-plugin-app-event": "1.2.0",
-    "cordova-plugin-device": "1.1.1",
     "cordova-plugin-device-orientation": "1.0.3-dev",
     "cordova-plugin-websql": "0.0.10",
     "cordova-plugin-whitelist": "1.2.1",

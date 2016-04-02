@@ -10,9 +10,6 @@
         "cordova-plugin-app-event": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
         "cordova-plugin-device-orientation": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
