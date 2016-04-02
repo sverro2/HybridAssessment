@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.phonegap.randomstring" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Eindopdracht</name>
     <description>Vang en bewonder je Pokemon.</description>
     <author email="mail@yourself.com" href="https://www.google.nl/#q=pokemon">Assessment Team</author>
