@@ -53,6 +53,7 @@
     <plugin name="cordova-plugin-websql" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <allow-navigation href="data:*" />
     <platform name="android">
         <preference name="AndroidLaunchMode" value="singleTop" />
         <allow-intent href="market:*" />
