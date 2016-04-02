@@ -229,7 +229,7 @@ function getPokemonDetail(pokemon) {
         html += ("<p><b>Height: </b>" + pokemon.height + "</p>");
         html += ("<p><b>Weight: </b>" + pokemon.weight + "</p>");
         html += ("<a href=\"#\" onclick=\"window.open('http://pokeapi.co/', '_system');\">© PokeApi.co</a>");
-        html += ("<script>PkSpr.process_dom();</script>");
+        //html += ("<script>PkSpr.process_dom();</script>");
 
         $("h1#title").text(pokemon.name);
         $('div#pokemon-data').html(html);
