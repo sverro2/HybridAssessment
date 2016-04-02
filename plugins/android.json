@@ -16,11 +16,11 @@
         "cordova-plugin-websql": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.phonegap.randomstring2"
         }
     },
     "dependent_plugins": {}
