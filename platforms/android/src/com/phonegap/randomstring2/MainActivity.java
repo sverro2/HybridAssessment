@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.phonegap.randomstring;
+package com.phonegap.randomstring2;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
