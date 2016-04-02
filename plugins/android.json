@@ -13,16 +13,19 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        },
         "cordova-plugin-websql": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
-        "cordova-plugin-device-orientation": {
+        "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         },
-        "de.appplant.cordova.plugin.local-notification": {
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.phonegap.helloworld"
         }
     },

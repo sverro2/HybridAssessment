@@ -122,6 +122,9 @@ function initializeDatabase(callback) {
       getSetting("pokemon-cache-count", function(value){
         amountOfPokemonToCache = value;
         fillDatabaseWithPokemon(callback);
+      }, function(){
+        amountOfPokemonToCache = 151;
+        fillDatabaseWithPokemon(callback);
       });
     });
 
@@ -447,13 +450,17 @@ function setSetting(key, value){
 }
 
 //get setting
-function getSetting(key, callback){
+function getSetting(key, callback, errorCallback){
   db.transaction(function (trans) {
     trans.executeSql('SELECT * FROM Settings WHERE key=?', [key], function (trans, results) {
         var len = results.rows.length;
 
         if(len){
           callback(results.rows[0].value)
+        }else{
+          if(errorCallback){
+            errorCallback();
+          }
         }
     });
   });
