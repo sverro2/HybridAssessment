@@ -189,7 +189,7 @@ function refreshAllPokemonList(callback) {
                 html += "<li id='" + pokemon.name + "' class='ui-btn'><a href='views/pokemon-detail.html'><span class='pkspr pkmn-" + pokemon.name + "'></span>" + pokemon.name + "</a></li>";
             }
 
-            html += "<script>PkSpr.process_dom();</script>";
+            //html += "<script>PkSpr.process_dom();</script>";
 
             $('ul#all-pokemon').html(html);
 
@@ -209,7 +209,7 @@ function refreshMyPokemonList(callback) {
                 html += "<li id='" + pokemon.name + "' class='ui-btn'><a href='views/pokemon-detail.html'><span class='pkspr pkmn-" + pokemon.name + "'></span>" + pokemon.name + "</a></li>";
             }
 
-            html += "<script>PkSpr.process_dom();</script>";
+            //html += "<script>PkSpr.process_dom();</script>";
 
             $('ul#my-pokemon').html(html);
 
