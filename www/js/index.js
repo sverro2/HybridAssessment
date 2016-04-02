@@ -238,11 +238,6 @@ function getPokemonDetail(pokemon) {
 
 //what needs to be done when a pokemon is detected within range
 function inRadiusOfPokemon(){
-  cordova.plugins.notification.local.schedule({
-      id: 1,
-      title: "Catch!",
-      message: "Hurry now! You are near a pokemon. Catch it!"
-  });
   $("#btn-back").trigger("click");
   setTimeout(function(){ $.mobile.navigate( "views/pokemon-catch.html" ); }, 500);
 }
@@ -250,9 +245,6 @@ function inRadiusOfPokemon(){
 //what needs to be done when a pokemon was detected, but now is out of range
 function outOfRadiusOfPokemon(){
   $("#btn-back").trigger("click");
-  cordova.plugins.notification.local.cancel(1, function () {
-    alert("One pokemon has fled away :'(");
-  });
 }
 
 //check wether or not a pokemon is within range (in order to decide wheter or not the pokemon can be caught)
@@ -282,7 +274,6 @@ function tryCatchPokemon(){
     alert("There is no pokemon to catch!");
   }
   isCloseBy = false;
-  cordova.plugins.notification.local.cancel(1, function () {});
   catchPokemon();
   db.transaction(function (trans) {
       trans.executeSql('DELETE FROM Locations WHERE name=?', [selectedLocation.name]);

@@ -11,9 +11,6 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="LocalNotification">
-        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
-    </feature>
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
     </feature>
@@ -23,7 +20,6 @@
     <description>Vang en bewonder je Pokemon.</description>
     <author email="mail@yourself.com" href="https://www.google.nl/#q=pokemon">Assessment Team</author>
     <content src="index.html" />
-    <preference name="phonegap-version" value="3.7.0" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
@@ -43,7 +39,6 @@
     <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.device-orientation" />
-    <gap:plugin name="de.appplant.cordova.plugin.local-notification" />
     <gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" source="pgb" spec="1.2.0" />
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
