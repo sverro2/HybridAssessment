@@ -50,8 +50,8 @@ module.exports.metadata =
 {
     "cordova-plugin-app-event": "1.2.0",
     "cordova-plugin-device-orientation": "1.0.3-dev",
-    "cordova-plugin-websql": "0.0.10",
     "cordova-plugin-geolocation": "2.1.0",
+    "cordova-plugin-websql": "0.0.10",
     "cordova-plugin-whitelist": "1.2.1"
 }
 // BOTTOM OF METADATA

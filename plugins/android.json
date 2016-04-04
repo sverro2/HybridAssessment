@@ -8,16 +8,16 @@
     },
     "installed_plugins": {
         "cordova-plugin-app-event": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "com.phonegap.randomstring2"
         },
         "cordova-plugin-device-orientation": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
-        },
-        "cordova-plugin-websql": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "com.phonegap.randomstring2"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.phonegap.helloworld"
+            "PACKAGE_NAME": "com.phonegap.randomstring2"
+        },
+        "cordova-plugin-websql": {
+            "PACKAGE_NAME": "com.phonegap.randomstring2"
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.phonegap.randomstring2"
