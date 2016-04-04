@@ -15,7 +15,7 @@
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
     <preference name="show-splash-screen-spinner" value="true" />
-    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="auto-hide-splash-screen" value="false" />
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
@@ -24,7 +24,7 @@
     <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.apache.cordova.device-orientation" />
     <gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" source="pgb" spec="1.2.0" />
-    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreen" value="splash" />
     <icon src="icon.png" />
     <gap:splash src="splash.png" />
     <plugin name="cordova-plugin-whitelist" version="1" />
